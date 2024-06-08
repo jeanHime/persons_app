@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persons_app/bloc/person_bloc.dart';
@@ -50,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController scrollController = ScrollController();
 
   @override
-
   void initState() {
     super.initState();
     scrollController.addListener((){
@@ -58,6 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
        context.read<PersonBloc>().add(LoadMoreEvent());
       }
     });
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
   }
 
   @override
