@@ -58,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocBuilder<PersonBloc,PersonState>(
           builder: (context, state){
             print(state.toString());
+            if (state is PersonInitialState) {
+              context.read<PersonBloc>().add(LoadInitialListEvent());
+              return const SizedBox();
+            }
             if (state is PersonLoadingState) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -95,12 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
             );
 
       }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<PersonBloc>().add(LoadInitialListEvent());
-        },
-        child: const Icon(Icons.refresh),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     context.read<PersonBloc>().add(LoadInitialListEvent());
+      //   },
+      //   child: const Icon(Icons.refresh),
+      // ),
     );
   }
 }
