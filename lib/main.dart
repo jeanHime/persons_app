@@ -47,6 +47,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController scrollController = ScrollController();
+
+  @override
+
+  void initState() {
+    super.initState();
+    scrollController.addListener((){
+      if(scrollController.position.maxScrollExtent == scrollController.offset){
+       context.read<PersonBloc>().add(LoadMoreEvent());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: BlocBuilder<PersonBloc,PersonState>(
           builder: (context, state){
-            print(state.toString());
             if (state is PersonInitialState) {
               context.read<PersonBloc>().add(LoadInitialListEvent());
               return const SizedBox();
@@ -91,12 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       context.read<PersonBloc>().add(LoadInitialListEvent());
                     },
                     child: ListView.builder(
-                    itemCount: personList.length +1,
+                    controller: scrollController,
+                    itemCount: personList.length + 1,
                     itemBuilder: (context, index) {
                       if(index < personList.length) {
                         return card(personList[index]);
                       } else if(state.pageIndex <= 4){
-                        context.read<PersonBloc>().add(LoadMoreEvent());
                         return const Padding(
                           padding: EdgeInsets.symmetric(vertical: 20.0),
                           child: Center(

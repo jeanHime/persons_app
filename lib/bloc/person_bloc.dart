@@ -26,6 +26,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
 
     on<LoadMoreEvent>((event, emit) async {
       try {
+        if(pageIndex>4) return;
         pageIndex++;
         final persons = await _personRepository.getPersons();
         _fetchData.addAll(persons);
