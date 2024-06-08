@@ -12,6 +12,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   PersonBloc(this._personRepository) : super(PersonInitialState()) {
     on<LoadInitialListEvent>((event, emit) async {
       _fetchData.clear();
+      pageIndex = 1;
       emit(PersonLoadingState());
 
       try {
