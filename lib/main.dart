@@ -76,20 +76,33 @@ class _MyHomePageState extends State<MyHomePage> {
               List<Person> personList = state.personList;
               print(personList.length);
               return personList.isNotEmpty
-                  ? ListView.builder(
-                  itemCount: personList.length +1,
-                  itemBuilder: (context, index) {
-                    if(index < personList.length) {
-                      return card(personList[index]);
-                    } else {
-                      return const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
-                        child: Center(
-                          child: Text("No More Data"),
-                        ),
-                      );
-                    }
-                  })
+                  ? RefreshIndicator(
+                    onRefresh: () async{
+                      context.read<PersonBloc>().add(LoadInitialListEvent());
+                    },
+                    child: ListView.builder(
+                    itemCount: personList.length +1,
+                    itemBuilder: (context, index) {
+                      if(index < personList.length) {
+                        return card(personList[index]);
+                      } else if(state.pageIndex <= 4){
+                        context.read<PersonBloc>().add(LoadMoreEvent());
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.0),
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      } else {
+                        return const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.0),
+                          child: Center(
+                            child: Text("No More Data"),
+                          ),
+                        );
+                      }
+                    }),
+                  )
                   : const Center(
                 child: Text("No Data Found"),
               );
