@@ -54,6 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("PersonsList"),
+        actions: [
+          if(kIsWeb)...{
+            IconButton(
+              onPressed: () {
+                context.read<PersonBloc>().add(LoadInitialListEvent());
+              },
+              icon: const Icon(Icons.refresh),
+            ),
+          }
+        ],
       ),
       body: BlocBuilder<PersonBloc,PersonState>(
           builder: (context, state){
