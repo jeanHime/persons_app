@@ -138,12 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
             );
 
       }),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     context.read<PersonBloc>().add(LoadInitialListEvent());
-      //   },
-      //   child: const Icon(Icons.refresh),
-      // ),
     );
   }
 
