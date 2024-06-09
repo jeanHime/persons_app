@@ -5,6 +5,7 @@ import 'package:persons_app/bloc/person_event.dart';
 import 'package:persons_app/bloc/person_state.dart';
 import 'package:persons_app/data/provider/prerson_provider.dart';
 import 'package:persons_app/data/repository/person_repository.dart';
+import 'package:persons_app/person_detail_screen.dart';
 
 import 'data/model/person_model.dart';
 
@@ -145,22 +146,29 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
     );
   }
-}
 
-card(Person person){
-  return Padding(
-    padding: const EdgeInsets.symmetric(
-        vertical: 4.0, horizontal: 8.0),
-    child: Card(
-      child: ListTile(
-        title: Text(
-            '${person.firstname} ${person.lastname}'),
-        subtitle: Text(person.email!),
-        leading: CircleAvatar(
-          backgroundImage:
-          NetworkImage(person.image.toString()),
+  card(Person person){
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          vertical: 4.0, horizontal: 8.0),
+      child: Card(
+        child: ListTile(
+          title: Text(
+              '${person.firstname} ${person.lastname}'),
+          subtitle: Text(person.email!),
+          leading: CircleAvatar(
+            backgroundImage:
+            NetworkImage(person.image.toString()),
+          ),
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PersonDetailScreen(personDetails: person)),
+            );
+          },
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+
