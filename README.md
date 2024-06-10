@@ -1,16 +1,17 @@
 # persons_app
 
-A new Flutter project.
+A Flutter project that get list of persons and display the details.
 
-## Getting Started
+## Key Feature
+ * BLoC for state management
+ * Dio for data fetching
 
-This project is a starting point for a Flutter application.
+## Project Structure
+ - **data** : Manages model, data fetching and repository implementations
+ - **bloc** : Bloc state management files
+ - **screen** : Manages the UI screen and components
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ ## Setup
+1. Go to https://github.com/jeanHime/persons_app and clone the project
+2. Open project on Android Studio or VSCode
+3. Run Project
