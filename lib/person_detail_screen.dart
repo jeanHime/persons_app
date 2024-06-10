@@ -46,6 +46,8 @@ class PersonDetailScreen extends StatelessWidget {
             _detailItem("Gender",personDetails.gender!),
             const SizedBox(height: 8,),
             _detailItem("Website",personDetails.website!),
+            const SizedBox(height: 8,),
+            _detailItem("Address",'${personDetails.address!.street!} ${personDetails.address!.streetName!} ${personDetails.address!.buildingNumber!} ${personDetails.address!.city!} ${personDetails.address!.zipcode!} ${personDetails.address!.country!} ${personDetails.address!.countyCode!}'),
           ],
         ),
       ),
@@ -53,6 +55,7 @@ class PersonDetailScreen extends StatelessWidget {
   }
   _detailItem(String itemName, String itemDetail){
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           flex: 1,
