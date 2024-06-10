@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persons_app/bloc/person_bloc.dart';
 import 'package:persons_app/data/provider/prerson_provider.dart';
 import 'package:persons_app/data/repository/person_repository.dart';
-import 'package:persons_app/person_list_screen.dart';
+import 'package:persons_app/screen/person_list_screen.dart';
+
 
 
 void main() {

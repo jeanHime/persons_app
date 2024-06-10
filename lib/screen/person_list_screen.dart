@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persons_app/bloc/person_bloc.dart';
-import 'package:persons_app/person_detail_screen.dart';
+import 'package:persons_app/screen/person_detail_screen.dart';
 import 'package:persons_app/bloc/person_event.dart';
 import 'package:persons_app/bloc/person_state.dart';
-import 'data/model/person_model.dart';
+import '../data/model/person_model.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 
